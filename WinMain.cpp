@@ -7,11 +7,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     case WM_CLOSE:
         PostQuitMessage(1);
         break;
+    case WM_KEYDOWN:
+        if (wParam == 'F') {
+            SetWindowText(hWnd, L"Respects");
+        }
+        break;
+    case WM_KEYUP:
+        if (wParam == 'F') {
+            SetWindowText(hWnd, L"Dangerfield");
+        }
+        break;
     }
     return DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
-int CALLBACK WinMain(
+int wWinMain(
     _In_ HINSTANCE hInstance,
     _In_ HINSTANCE hPrevInstance,
     _In_ LPWSTR lpCmdLine,
@@ -31,12 +41,12 @@ int CALLBACK WinMain(
     wc.lpszMenuName = nullptr;
     wc.lpszClassName = pClassName;
     wc.hIconSm = nullptr;
-    RegisterClassEx( &wc );
+    RegisterClassEx(&wc);
     HWND hWnd = CreateWindowEx(
         0, pClassName,
         L"Happy Hard Windows",
         WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
-        200, 200, 1920, 1080,
+        200, 200, 600, 400,
         nullptr, nullptr, hInstance, nullptr
     );
     ShowWindow(hWnd, SW_SHOW);
@@ -50,6 +60,6 @@ int CALLBACK WinMain(
         return -1;
     }
     else {
-        return msg.wParam;
+        return (int)msg.wParam;
     }
 }
