@@ -1,13 +1,10 @@
 #include "Window.h"
 
-Window::WindowClass Window::WindowClass::wndClass
-{
+Window::WindowClass Window::WindowClass::wndClass;
 
-}
-
-Window::WindowClass::WindowClass() noexept
+Window::WindowClass::WindowClass() noexcept
 	:
-hInst(GetModuleHandle(nullptr))
+	hInst(GetModuleHandle(nullptr))
 {
 	WNDCLASSEX wc = { 0 };
 	wc.cbSize = sizeof(wc);
@@ -30,7 +27,7 @@ Window::WindowClass::~WindowClass()
 	UnregisterClass(wndClassName, GetInstance());
 }
 
-const char* Window::WindowClass::GetName() noexcept
+const LPCWSTR Window::WindowClass::GetName() noexcept
 {
 	return wndClassName;
 }
@@ -40,7 +37,7 @@ HINSTANCE Window::WindowClass::GetInstance() noexcept
 	return wndClass.hInst;
 }
 
-Window::Window(int width, int height, const char* name) noexcept
+Window::Window(int width, int height, const LPCWSTR name) noexcept
 {
 	RECT wr;
 	wr.left = 100;
@@ -62,7 +59,7 @@ Window::~Window()
 	DestroyWindow(hWnd);
 }
 
-LRESULT WINAPI Window::HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT WINAPI Window::HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
 {
 	if (msg == WM_NCCREATE) {
 		const CREATESTRUCTW* const pCreate = reinterpret_cast<CREATESTRUCTW*>(lParam);
@@ -74,8 +71,19 @@ LRESULT WINAPI Window::HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM
 	return DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
-LRESULT WINAPI Window::HandleMsgThuck(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
+LRESULT WINAPI Window::HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
 {
-	Window& const pWnd = reinterpret_cast<Window*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
+	Window* const pWnd = reinterpret_cast<Window*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
 	return pWnd->HandleMsg(hWnd, msg, wParam, lParam);
+}
+
+LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
+{
+	switch (msg)
+	{
+	case WM_CLOSE:
+		PostQuitMessage(0);
+		return 0;
+	}
+	return DefWindowProc(hWnd, msg, wParam, lParam);
 }
