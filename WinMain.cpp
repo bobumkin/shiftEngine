@@ -1,4 +1,7 @@
 #include "Window.h"
+#include <stringapiset.h>
+#include <iostream>
+
 
 int CALLBACK WinMain(
 	_In_ HINSTANCE hInstance,
@@ -7,7 +10,7 @@ int CALLBACK WinMain(
 	_In_ int       nCmdShow)
 {
 	try {
-		Window wnd(800, 600, L"Donkey Fart Box");
+		Window wnd(800, 600, "Donkey Fart Box");
 		MSG msg;
 		BOOL gResult;
 		while ((gResult = GetMessage(&msg, nullptr, 0, 0)) > 0) {
@@ -20,13 +23,13 @@ int CALLBACK WinMain(
 		return msg.wParam;
 	}
 	catch (const CustomException& e) {
-		MessageBox(nullptr, (LPCWSTR)e.what(), e.GetType(), MB_OK | MB_ICONEXCLAMATION);
+		MessageBox(nullptr, e.what(), e.GetType(), MB_OK | MB_ICONEXCLAMATION);
 	}
 	catch (const std::exception& e) {
-		MessageBox(nullptr, (LPCWSTR)e.what(), L"Standard Exception", MB_OK | MB_ICONEXCLAMATION);
+		MessageBox(nullptr, e.what(), "Standard Exception", MB_OK | MB_ICONEXCLAMATION);
 	}
 	catch (...) {
-		MessageBox(nullptr, L"No details available", L"Unknown Exception", MB_OK | MB_ICONEXCLAMATION);
+		MessageBox(nullptr, "No details available", "Unknown Exception", MB_OK | MB_ICONEXCLAMATION);
 	}
 	return -1;
 }

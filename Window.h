@@ -21,19 +21,19 @@ private:
 	class WindowClass
 	{
 	public:
-		static const LPCWSTR GetName() noexcept;
+		static const char* GetName() noexcept;
 		static HINSTANCE GetInstance() noexcept;
 	private:
-		WindowClass() noexcept;
+		WindowClass();
 		~WindowClass();
 		WindowClass(const WindowClass&) = delete;
 		WindowClass& operator=(const WindowClass&) = delete;
-		static constexpr const LPCWSTR wndClassName = L"shift engine";
+		static constexpr const char* wndClassName = "shift engine";
 		static WindowClass wndClass;
 		HINSTANCE hInst;
 	};
 public:
-	Window(int width, int height, const LPCWSTR name) noexcept;
+	Window(int width, int height, const char* name);
 	~Window();
 	Window(const Window&) = delete;
 	Window& operator=(const Window&) = delete;
@@ -46,3 +46,6 @@ private:
 	int height;
 	HWND hWnd;
 };
+
+#define CHWND_EXCEPT(hr) Window::Exception(__LINE__, __FILE__, hr)
+#define CHWND_LAST_EXCEPT() Window::Exception(__LINE__, __FILE__, GetLastError())

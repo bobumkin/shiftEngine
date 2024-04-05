@@ -18,15 +18,21 @@
     <ClCompile Include="WinMain.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="ChiliWin.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClCompile>
     <ClCompile Include="Window.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomExeption.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EasyWin.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
     <ClInclude Include="Window.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomException.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

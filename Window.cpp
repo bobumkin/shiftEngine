@@ -3,7 +3,7 @@
 
 Window::WindowClass Window::WindowClass::wndClass;
 
-Window::WindowClass::WindowClass() noexcept
+Window::WindowClass::WindowClass()
 	:
 	hInst(GetModuleHandle(nullptr))
 {
@@ -28,7 +28,7 @@ Window::WindowClass::~WindowClass()
 	UnregisterClass(wndClassName, GetInstance());
 }
 
-const LPCWSTR Window::WindowClass::GetName() noexcept
+const char* Window::WindowClass::GetName() noexcept
 {
 	return wndClassName;
 }
@@ -38,20 +38,26 @@ HINSTANCE Window::WindowClass::GetInstance() noexcept
 	return wndClass.hInst;
 }
 
-Window::Window(int width, int height, const LPCWSTR name) noexcept
+Window::Window(int width, int height, const char* name)
 {
 	RECT wr;
 	wr.left = 100;
 	wr.right = width + wr.left;
 	wr.top = 100;
 	wr.bottom = height + wr.top;
-	AdjustWindowRect(&wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, false);
+	throw CHWND_EXCEPT(ERROR_ARENA_TRASHED);
+	if (FAILED(AdjustWindowRect(&wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, false))) {
+		throw CHWND_LAST_EXCEPT();
+	}
 	hWnd = CreateWindow(
 		WindowClass::GetName(), name,
 		WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
 		CW_USEDEFAULT, CW_USEDEFAULT, wr.right - wr.left, wr.bottom - wr.top,
 		nullptr, nullptr, WindowClass::GetInstance(), this
 	);
+	if (hWnd == nullptr) {
+		throw CHWND_LAST_EXCEPT();
+	}
 	ShowWindow(hWnd, SW_SHOWDEFAULT);
 }
 
@@ -106,9 +112,9 @@ const char* Window::Exception::what() const noexcept
 	return whatBuffer.c_str();
 }
 
-const LPCWSTR Window::Exception::GetType() const noexcept
+const char* Window::Exception::GetType() const noexcept
 {
-	return L"Window Exception";
+	return "Window Exception";
 }
 
 std::string Window::Exception::TranslateErrorCode(HRESULT hr) noexcept
@@ -118,7 +124,7 @@ std::string Window::Exception::TranslateErrorCode(HRESULT hr) noexcept
 		FORMAT_MESSAGE_ALLOCATE_BUFFER |
 		FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
 		nullptr, hr, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-		reinterpret_cast<LPWSTR>(&pMsgBuf), 0, nullptr
+		reinterpret_cast<LPSTR>(&pMsgBuf), 0, nullptr
 	);
 	if (nMsgLen == 0) {
 		return "Unidentified error code";
