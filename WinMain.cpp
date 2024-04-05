@@ -1,5 +1,4 @@
 #include "Window.h"
-#include <stringapiset.h>
 #include <iostream>
 
 
