@@ -9,7 +9,7 @@ int CALLBACK WinMain(
 	_In_ int       nCmdShow)
 {
 	try {
-		Window wnd(800, 600, "Donkey Fart Box");
+		Window wnd(800, 600, "Shift Engine");
 		MSG msg;
 		BOOL gResult;
 		while ((gResult = GetMessage(&msg, nullptr, 0, 0)) > 0) {
