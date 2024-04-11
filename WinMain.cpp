@@ -1,6 +1,5 @@
 #include "Window.h"
-#include <iostream>
-
+#include <sstream>
 
 int CALLBACK WinMain(
 	_In_ HINSTANCE hInstance,
@@ -15,6 +14,14 @@ int CALLBACK WinMain(
 		while ((gResult = GetMessage(&msg, nullptr, 0, 0)) > 0) {
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
+			while (!wnd.mouse.IsEmpty()) {
+				const auto e = wnd.mouse.Read();
+				if (e.GetType() == Mouse::Event::Type::Move) {
+					std::ostringstream oss;
+					oss << "Mouse Position: (" << e.GetPosX() << ", " << e.GetPosY() << ")";
+					wnd.SetTitle(oss.str());
+				}
+			}
 		}
 		if (gResult == -1) {
 			return -1;
