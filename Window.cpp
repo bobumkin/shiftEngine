@@ -92,6 +92,9 @@ std::optional<int> Window::ProcessMessages()
 
 Graphics& Window::Gfx()
 {
+	if (!pGfx) {
+		throw CHWND_NOGFX_EXCEPT();
+	}
 	return *pGfx;
 }
 
