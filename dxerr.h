@@ -5,6 +5,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 const WCHAR* WINAPI DXGetErrorStringW(_In_ HRESULT hr);
 const CHAR* WINAPI DXGetErrorStringA(_In_ HRESULT hr);
 #ifdef UNICODE
@@ -12,6 +13,7 @@ const CHAR* WINAPI DXGetErrorStringA(_In_ HRESULT hr);
 #else
 #define DXGetErrorString DXGetErrorStringA
 #endif
+
 void WINAPI DXGetErrorDescriptionW(_In_ HRESULT hr, _Out_cap_(count) WCHAR* desc, _In_ size_t count);
 void WINAPI DXGetErrorDescriptionA(_In_ HRESULT hr, _Out_cap_(count) CHAR* desc, _In_ size_t count);
 #ifdef UNICODE
@@ -19,6 +21,7 @@ void WINAPI DXGetErrorDescriptionA(_In_ HRESULT hr, _Out_cap_(count) CHAR* desc,
 #else
 #define DXGetErrorDescription DXGetErrorDescriptionA
 #endif
+
 HRESULT WINAPI DXTraceW(_In_z_ const WCHAR* strFile, _In_ DWORD dwLine, _In_ HRESULT hr, _In_opt_ const WCHAR* strMsg, _In_ bool bPopMsgBox);
 HRESULT WINAPI DXTraceA(_In_z_ const CHAR* strFile, _In_ DWORD dwLine, _In_ HRESULT hr, _In_opt_ const CHAR* strMsg, _In_ bool bPopMsgBox);
 #ifdef UNICODE
@@ -26,6 +29,7 @@ HRESULT WINAPI DXTraceA(_In_z_ const CHAR* strFile, _In_ DWORD dwLine, _In_ HRES
 #else
 #define DXTrace DXTraceA
 #endif
+
 #if defined(DEBUG) || defined(_DEBUG)
 #ifdef UNICODE
 #define DXTRACE_MSG(str)              DXTrace( __FILEW__, (DWORD)__LINE__, 0, str, false )
