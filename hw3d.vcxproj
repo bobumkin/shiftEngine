@@ -110,6 +110,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <ProjectReference />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -128,10 +129,13 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <ProjectReference />
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="CustomExeption.cpp" />
+    <ClCompile Include="dxerr.cpp" />
+    <ClCompile Include="DxgiInfoManager.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Mouse.cpp" />
@@ -142,6 +146,7 @@
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="dxerr.h" />
+    <ClInclude Include="DxgiInfoManager.h" />
     <ClInclude Include="EasyWin.h" />
     <ClInclude Include="CustomException.h" />
     <ClInclude Include="Graphics.h" />
