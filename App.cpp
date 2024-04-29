@@ -4,7 +4,7 @@
 
 App::App()
 	:
-	wnd(800, 600, "Shift engine")
+	wnd(1200, 800, "Shift engine")
 {}
 
 int App::Go()
@@ -20,8 +20,13 @@ int App::Go()
 void App::DoFrame()
 {
 	wnd.Gfx().ClearBuffer(0.0f, 0.0f, 0.0f);
+	wnd.Gfx().DrawTestTriangle(
+		-timer.Peek(),
+		0.0f,
+		0.0f
+	);
 	wnd.Gfx().DrawTestTriangle(timer.Peek(),
-		wnd.mouse.GetPosX() / 400.0f - 1.0f,
-		-wnd.mouse.GetPosY() / 300.0f + 1.0f);
+		wnd.mouse.GetPosX() / 600.0f - 1,
+		-wnd.mouse.GetPosY() / 400.0f + 1);
 	wnd.Gfx().EndFrame();
 }
