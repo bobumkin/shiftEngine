@@ -1,5 +1,4 @@
 #pragma once
-#include "EasyWin.h"
 #include <exception>
 #include <string>
 

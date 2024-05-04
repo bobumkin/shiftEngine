@@ -1,8 +1,8 @@
 #pragma once
 #include "EasyWin.h"
 #include <wrl.h>
-#include <string>
 #include <vector>
+#include <string>
 #include <dxgidebug.h>
 
 class DxgiInfoManager
