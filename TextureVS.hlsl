@@ -5,14 +5,14 @@ cbuffer CBuf
 
 struct VSOut
 {
-	float4 color : Color;
+	float2 tex : TexCoord;
 	float4 pos : SV_Position;
 };
 
-VSOut main( float3 pos : Position,float4 color : Color )
+VSOut main( float3 pos : Position,float2 tex : TexCoord )
 {
 	VSOut vso;
 	vso.pos = mul( float4(pos,1.0f),transform );
-	vso.color = color;
+	vso.tex = tex;
 	return vso;
 }
