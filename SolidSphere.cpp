@@ -1,6 +1,6 @@
 #include "SolidSphere.h"
-#include "BindableBase.h"
-#include "GraphicsThrowMacros.h"
+#include "bindable/BindableBase.h"
+#include "macros/GraphicsThrowMacros.h"
 #include "Sphere.h"
 
 

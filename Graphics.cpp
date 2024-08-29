@@ -1,10 +1,10 @@
 #include "Graphics.h"
-#include "dxerr.h"
+#include "dxerr/dxerr.h"
 #include <sstream>
 #include <d3dcompiler.h>
 #include <cmath>
 #include <DirectXMath.h>
-#include "GraphicsThrowMacros.h"
+#include "macros/GraphicsThrowMacros.h"
 #include "imgui/imgui_impl_dx11.h"
 #include "imgui/imgui_impl_win32.h"
 

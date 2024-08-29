@@ -6,7 +6,7 @@
 #include "Graphics.h"
 #include <optional>
 #include <memory>
-#include "WindowsThrowMacros.h"
+#include "macros/WindowsThrowMacros.h"
 
 class Window
 {

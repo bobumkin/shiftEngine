@@ -1,13 +1,13 @@
 #include "App.h"
-#include "Box.h"
-#include "Cylinder.h"
-#include "Pyramid.h"
-#include "SkinnedBox.h"
+#include "drawable/Box.h"
+#include "drawable/Cylinder.h"
+#include "drawable/Pyramid.h"
+#include "drawable/SkinnedBox.h"
 #include <memory>
 #include <algorithm>
 #include "CustomMath.h"
-#include "Surface.h"
-#include "GDIPlusManager.h"
+#include "bindable/Surface.h"
+#include "drawable/GDIPlusManager.h"
 #include "imgui/imgui.h"
 
 namespace dx = DirectX;

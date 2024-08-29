@@ -1,7 +1,7 @@
 #pragma once
 #include "Graphics.h"
 #include "SolidSphere.h"
-#include "ConstantBuffers.h"
+#include "bindable/ConstantBuffers.h"
 
 class PointLight
 {

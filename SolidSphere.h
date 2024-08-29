@@ -1,5 +1,5 @@
 #pragma once
-#include "DrawableBase.h"
+#include "drawable/DrawableBase.h"
 
 class SolidSphere : public DrawableBase<SolidSphere>
 {
