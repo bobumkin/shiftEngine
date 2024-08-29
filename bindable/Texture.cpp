@@ -1,6 +1,6 @@
 #include "Texture.h"
 #include "Surface.h"
-#include "../GraphicsThrowMacros.h"
+#include "../macros/GraphicsThrowMacros.h"
 
 namespace wrl = Microsoft::WRL;
 
