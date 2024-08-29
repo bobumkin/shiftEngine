@@ -1,5 +1,5 @@
 #define FULL_WINTARD
-#include "EasyWin.h"
+#include "../EasyWin.h"
 #include "GDIPlusManager.h"
 #include <algorithm>
 namespace Gdiplus
